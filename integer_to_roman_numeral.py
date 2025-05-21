@@ -128,10 +128,10 @@ def roman_to_integers(num: int) -> str:
                     roman += r[1] * int(num_str[i])
                     continue
                 case "6" | "7" | "8":
-                    if num_str[i] ==  "6":
+                    if num_str[i] == "6":
                         roman += r[5] + (r[1] * 1)
                         continue
-                    elif num_str[i] ==  "7":
+                    elif num_str[i] == "7":
                         roman += r[5] + (r[1] * 2)
                         continue
                     else:
@@ -143,4 +143,109 @@ def roman_to_integers(num: int) -> str:
     return roman
 
 
-print(roman_to_integers(2075))
+# print(roman_to_integers(2075))
+
+
+# A better approach to this problem with clearity in the code and no need for a separate dictionary (map) to keep track of the roman numerals
+
+
+def roman_to_int(num: int) -> str:
+    """
+    Takes a number in the range 1...3999 and converts it to a roman number and returns it in the form of a string
+    """
+
+    if not (0 < num < 4000):
+        raise ValueError("Number should range from 1 to 3999")
+
+    roman = ""
+    while num > 0:
+        if num >= 1000:
+            num -= 1000
+            roman += "M"
+            continue
+        elif num >= 900:
+            num -= 900
+            roman += "CM"
+            continue
+        elif num >= 500:
+            num -= 500
+            roman += "D"
+            continue
+        elif num >= 400:
+            num -= 400
+            roman += "CD"
+            continue
+        elif num >= 100:
+            num -= 100
+            roman += "C"
+            continue
+        elif num >= 90:
+            num -= 90
+            roman += "XC"
+            continue
+        elif num >= 50:
+            num -= 50
+            roman += "L"
+            continue
+        elif num >= 40:
+            num -= 40
+            roman += "XL"
+            continue
+        elif num >= 10:
+            num -= 10
+            roman += "X"
+            continue
+        elif num >= 9:
+            num -= 9
+            roman += "IX"
+            continue
+        elif num >= 5:
+            num -= 5
+            roman += "V"
+            continue
+        elif num >= 4:
+            num -= 4
+            roman += "IV"
+            continue
+        else:
+            num -= 1
+            roman += "I"
+            continue
+
+    return roman
+
+
+# print(roman_to_int(1994))
+
+
+# Another more simple looking approach would have been creating an array with (value, roman_representation) pairs
+def roman_to_int_simpler(num: int) -> str:
+    if not (0 < num < 4000):
+        raise ValueError("Number should range from 1 to 3999")
+    
+    roman = ""
+
+    value_symbol_pairs = [
+        (1000, "M"),
+        (900, "CM"),
+        (500, "D"),
+        (400, "CD"),
+        (100, "C"),
+        (90, "XC"),
+        (50, "L"),
+        (40, "XL"),
+        (10, "X"),
+        (9, "IX"),
+        (5, "V"),
+        (4, "IV"),
+        (1, "I"),
+    ]
+
+    for value, symbol in value_symbol_pairs:
+        while num >= value:
+            num -= value
+            roman += symbol
+            
+    return roman
+
+print(roman_to_int_simpler(1994))
