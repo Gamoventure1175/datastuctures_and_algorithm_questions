@@ -1,7 +1,3 @@
-Here is your **clean, improved, aesthetic, and motivating `README.md` rewrite**:
-
----
-
 # 📚 Data Structures and Algorithms 1.1
 
 Welcome to **Data Structures and Algorithms 1.1** –
