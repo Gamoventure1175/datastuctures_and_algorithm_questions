@@ -17,7 +17,7 @@ class Empty(Exception):
     pass
 
 
-from dynamic_arrray import DynamicArray
+from datastructures.dynamic_arrray import DynamicArray
 
 
 class ArrayStack:

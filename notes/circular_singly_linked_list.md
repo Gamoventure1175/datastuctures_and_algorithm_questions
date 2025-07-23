@@ -25,7 +25,18 @@ class CircularSinglyLinkedList:
 
 ## Representation of a Circular Singly Linked List
 
+### Implementating logic for representing this circular singly linked list: 
+1. Initialize a `__repr__` function
+2. Return ***'Linked list is empty'*** when ***self.head*** is **None**.
+3. Assign a **current** pointer to ***self.head***
+4. Using the current pointer, keep iterating over to the next *Nodes* until:```current.next == self.head```
+5. While iterating, use **current.data** to form *string* representation of the data inside the nodes in the list
+6. At the end, return the string representation of the *linked_list*
+
 ### Expected output
+```txt
+(head) n1 -> n2 -> n3 -> n4 -> n1 (back to head)
+ ```
 
 ## Operations on circular singly linked list
 1. Insertion

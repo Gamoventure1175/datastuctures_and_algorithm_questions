@@ -79,6 +79,13 @@ class CircularSinglyLinkedList:
             ), "Tail's next should always be head in a circular linked list"
 
     def __repr__(self) -> str:
+        """
+        #### A function to represent the circular singly linked list
+        Outputs the list in the following format:
+
+        > (head) n1 -> n2 -> n3 -> n4 -> n1 (back to head)
+        """
+
         if self.head is None:
             return "List is empty."
 

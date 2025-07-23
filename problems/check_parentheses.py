@@ -6,7 +6,7 @@
 # Open brackets must be closed in the correct order.
 # Every close bracket has a corresponding open bracket of the same type.
 
-from array_based_stack import ArrayStack
+from datastructures.array_based_stack import ArrayStack
 
 
 # I read about this approach in the DSA book I am reading
@@ -26,7 +26,7 @@ def isValidBracket(s: str) -> bool:
         elif exp in righty:
             if brackets.is_empty():
                 return False
-            if righty.index(exp) != lefty.index(brackets.pop()): 
+            if righty.index(exp) != lefty.index(brackets.pop()):
                 return False
 
     return brackets.is_empty()

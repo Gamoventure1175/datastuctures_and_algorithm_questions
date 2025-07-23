@@ -6,19 +6,19 @@
 #   2. remainder
 # The idea is that we keep dividing by 2 until the remainder becomes 1 and quotient is greater than 0
 
-from array_based_stack import ArrayStack
+from datastructures.array_based_stack import ArrayStack
 
 
 def dec_to_bin(num: int):
     """A function that takes any decimal number > 0 and converts it to binary"""
     stack = ArrayStack()
     binary = ""
-    
+
     while num > 0:
         rem = num % 2
         stack.push(rem)
         num = num // 2
-        
+
     while stack:
         binary += str(stack.pop())
 
