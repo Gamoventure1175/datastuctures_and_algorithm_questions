@@ -181,3 +181,11 @@ def insert_end(self, data: int) -> None:
 )
 
 
+#### Edge cases for this operation
+1. *Empty circular linked list* : This will occur when the list is empty.
+
+2. *Adding the element at the start* : This will occur if the positional index is 0
+
+3. *Adding the element to the end*: This will occur if the positional index is, index == self.length - 1
+
+4. *Out of range position* : This will occur if the positional index is not in the range [0, length), where, '[' -> included and ')' not included

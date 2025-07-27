@@ -178,28 +178,3 @@ class CircularSinglyLinkedList:
         A function that returns the length of the circular linked list.
         """
         return self.length
-
-
-list1 = CircularSinglyLinkedList()
-list1.insert_beginning(7)
-list1.insert_beginning(8)
-list1.insert_beginning(9)
-list1.insert_end(10)
-list1.insert_end(11)
-list1.insert_end(12)
-list1.insert_beginning(32)
-list1.insert_end(2)
-print(list1)
-print(len(list1))
-
-list1.insert_at_any_position(6, 6)
-print(list1)
-
-print(len(list1))
-list1.insert_at_any_position(0, 10)
-print(list1)
-
-print(len(list1))
-list1.insert_at_any_position(10, 10)
-print(list1)
-print(len(list1))
