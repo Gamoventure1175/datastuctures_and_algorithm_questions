@@ -11,7 +11,7 @@ a structured vault for notes, implementations, and solved problems gathered duri
 Concise explanations of core data structures, algorithms, and key patterns with examples.
 
 ✅ **Data Structure Implementations**
-Clean, testable Python (and potentially C++/Java) implementations of:
+Clean, testable Python implementations of:
 
 * Linked Lists (Singly, Doubly, Circular)
 * Trees and Binary Trees
@@ -24,10 +24,7 @@ Clean, testable Python (and potentially C++/Java) implementations of:
 A dedicated folder accounting for problems solved over the years:
 
 * LeetCode
-* Codeforces
-* AtCoder
-* Custom handwritten problems
-* Pattern-based practice
+* NeetCode
 
 and many more sources.....
 
@@ -50,26 +47,3 @@ If you find anything helpful:
 
 * Use it for your DSA practice.
 * Clone and maintain your own vault.
-* Share it with peers starting their DSA journey.
-
----
-
-## 🛠️ How to navigate
-
-* `notes/` – Structured notes with explanations.
-* `datastructures/` – Core data structure and algorithm implementations.
-* `problems/` – Solved problem statements and solutions.
-
----
-
-## 🌱 Contributions
-
-Currently, this is a personal learning repository, but:
-
-* If you spot improvements or typos, feel free to open a PR.
-
----
-
-Happy coding! 🚀
-
-> **“Data structures + algorithms = programs.” – Niklaus Wirth**
