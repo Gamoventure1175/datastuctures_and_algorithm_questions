@@ -75,13 +75,13 @@ def groupAnagrams(strs: list[str]):
             continue
         
         group = [strs[i]]
+        is_it_checked[strs[i]] = True
 
         for j in range(1, len(strs)):
             if isValidAnagram(strs[i], strs[j]):
                 group.append(strs[j])
-                is_it_checked[strs[i]], is_it_checked[strs[j]] = True, True
-            else:
-                is_it_checked[strs[i]] = True
+                is_it_checked[strs[j]] = True
+                
     
         groups.append(group)
 
