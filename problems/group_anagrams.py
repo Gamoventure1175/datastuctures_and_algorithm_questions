@@ -65,8 +65,29 @@ def isValidAnagram(str1: str, str2: str):
     
     return True
 
-if __name__ == "__main__":
-    str1 = 'tops'
-    str2 = 'pots'
+def groupAnagrams(strs: list[str]):
+    is_it_checked: dict[str, bool] = {}
 
-    print(isValidAnagram(str1 = str1, str2 = str2))
+    groups = []
+    
+    for i in range(len(strs)):
+        if is_it_checked.get(strs[i]):
+            continue
+        
+        group = [strs[i]]
+
+        for j in range(1, len(strs)):
+            if isValidAnagram(strs[i], strs[j]):
+                group.append(strs[j])
+                is_it_checked[strs[i]], is_it_checked[strs[j]] = True, True
+            else:
+                is_it_checked[strs[i]] = True
+    
+        groups.append(group)
+
+    return groups
+
+if __name__ == "__main__":
+    strs = ["act","pots","tops","cat","stop","hat"]
+
+    print(groupAnagrams(strs))
