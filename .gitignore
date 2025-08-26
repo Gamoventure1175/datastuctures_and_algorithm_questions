@@ -1,0 +1,80 @@
+# ------------------
+# Python cache / env
+# ------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.so
+*.dll
+
+reid/index.json
+reid/index.ann
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.venv*
+
+Logs
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# ------------------
+# OS generated files
+# ------------------
+.DS_Store
+Thumbs.db
+
+# ------------------
+# Logs & CSV outputs (runtime generated)
+*.log
+*.csv
+recognitions_log.csv
+
+# ------------------
+# Model weights / checkpoints
+*.pt
+*.onnx
+*.pb
+*.h5
+*.ckpt
+
+# ------------------
+# Generated embeddings / index / meta (runtime generated)
+face_embeddings.npy
+faces.ann
+faces_meta.json
+person_stats.json
+*.npy
+*.ann
+
+# ------------------
+# Registered images folder
+registered_faces/
+
+# ------------------
+# Media folder structure only (keep empty folders)
+media/images/*
+media/videos/*
+
+# Keep folder placeholders so structure stays in repo
+!media/images/.gitkeep
+!media/videos/.gitkeep
+
+# ------------------
+# Other generated output / temp files
+output/
+*.mp4
+*.avi
+*.jpg
+*.png
+
+# ------------------
+# IDE / editor files
+.vscode/
+.idea/
