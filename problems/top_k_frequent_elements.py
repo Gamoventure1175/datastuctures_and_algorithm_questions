@@ -22,7 +22,7 @@ Constraints:
 1 <= k <= number of distinct elements in nums.
 '''
 
-# Approach 1: Using a Counter dictionary to get count of the numbers and return output based on that
+# Approach 1: Using a Counter dictionary to get count of the numbers and return output based on that ❌
 def topKFrequent(input, k):
     if len(input) == 0:
         return [-1]
@@ -50,3 +50,6 @@ if __name__ == '__main__':
 
     
     print(topKFrequent(nums, k))
+
+
+# Approach 2: Lets see
