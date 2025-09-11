@@ -23,33 +23,85 @@ Constraints:
 '''
 
 # Approach 1: Using a Counter dictionary to get count of the numbers and return output based on that ❌
-def topKFrequent(input, k):
-    if len(input) == 0:
-        return [-1]
+# def topKFrequent(input, k):
+#     if len(input) == 0:
+#         return [-1]
         
-    from collections import Counter
-    freqCount = Counter(input)
-    freqCountItems = list(freqCount.items()) # Used later on for appending these keys to output
-    print(f'Dictionary: {freqCount}')
-    print(f'Keys: {freqCountItems}')
-    output = []
-    freqSet = set()    
-    for value in freqCount.values():
-        freqSet.add(value)
+#     from collections import Counter
+#     freqCount = Counter(input)
+#     freqCountItems = list(freqCount.items()) # Used later on for appending these keys to output
+#     print(f'Dictionary: {freqCount}')
+#     print(f'Keys: {freqCountItems}')
+#     output = []
+#     freqSet = set()    
+#     for value in freqCount.values():
+#         freqSet.add(value)
     
-    if len(freqSet) != len(freqCount):
+#     if len(freqSet) != len(freqCount):
+#         return [-1]
+#     else:
+#         for i in range(k):
+#             output.append(freqCountItems[i][0])
+#     return output
+
+# if __name__ == '__main__':
+#     nums = [1,1,1,2,2,3]
+#     k = 2
+
+    
+#     print(topKFrequent(nums, k))
+
+
+# Approach 2: Using a custom sorting algorithm for sorting ❌
+def topKFrequent(nums, k):
+    if len(nums) == 0:
+        return [-1]
+
+    freq = {}
+    for ele in nums:
+        if freq.get(ele):
+            freq[ele] += 1
+        else:
+            freq[ele] = 1
+
+    freq_keys = list(freq.keys())
+    freq_values = list(freq.values())
+    freq_count_set = set(freq_values)
+
+    print("Before: ", freq_keys, freq_values, freq_count_set)
+
+    if len(freq_count_set) == 1:
+        result = []
+        for i in range(-1, -k-1, -1):
+            result.append(freq_keys[i])
+        return result
+    elif len(freq_values) > len(freq_count_set):
         return [-1]
     else:
-        for i in range(k):
-            output.append(freqCountItems[i][0])
-    return output
+        for i in range(1, len(freq_keys)):
+            prev, curr = i-1, i
 
-if __name__ == '__main__':
-    nums = [1,1,1,2,2,3]
-    k = 2
+            while prev >= 0:
+                if freq_values[prev] > freq_values[curr]:
+                    freq_values[prev], freq_values[curr] = freq_values[curr], freq_values[prev]
+                    freq_keys[prev], freq_keys[curr] = freq_keys[curr], freq_keys[prev]
+                    prev -= 1
 
+                    curr -= 1
+                else:
+                    prev -= 1
+                    curr -= 1
+                    continue
     
+    print("After: ", freq_keys, freq_values, freq_count_set)
+    result = []
+
+    for i in range(-1, -k-1, -1):
+        result.append(freq_keys[i])
+
+    return result
+
+if __name__ == "__main__":
+    nums=[3,0,1,0]
+    k=1
     print(topKFrequent(nums, k))
-
-
-# Approach 2: Lets see
