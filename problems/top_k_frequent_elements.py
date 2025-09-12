@@ -53,55 +53,108 @@ Constraints:
 
 
 # Approach 2: Using a custom sorting algorithm for sorting ❌
+# def topKFrequent(nums, k):
+#     if len(nums) == 0:
+#         return [-1]
+
+#     freq = {}
+#     for ele in nums:
+#         if freq.get(ele):
+#             freq[ele] += 1
+#         else:
+#             freq[ele] = 1
+
+#     freq_keys = list(freq.keys())
+#     freq_values = list(freq.values())
+#     freq_count_set = set(freq_values)
+
+#     print("Before: ", freq_keys, freq_values, freq_count_set)
+
+#     if len(freq_count_set) == 1:
+#         result = []
+#         for i in range(-1, -k-1, -1):
+#             result.append(freq_keys[i])
+#         return result
+#     elif len(freq_values) > len(freq_count_set):
+#         return [-1]
+#     else:
+#         for i in range(1, len(freq_keys)):
+#             prev, curr = i-1, i
+
+#             while prev >= 0:
+#                 if freq_values[prev] > freq_values[curr]:
+#                     freq_values[prev], freq_values[curr] = freq_values[curr], freq_values[prev]
+#                     freq_keys[prev], freq_keys[curr] = freq_keys[curr], freq_keys[prev]
+#                     prev -= 1
+
+#                     curr -= 1
+#                 else:
+#                     prev -= 1
+#                     curr -= 1
+#                     continue
+    
+#     print("After: ", freq_keys, freq_values, freq_count_set)
+#     result = []
+
+#     for i in range(-1, -k-1, -1):
+#         result.append(freq_keys[i])
+
+#     return result
+
+# if __name__ == "__main__":
+#     nums=[3,0,1,0]
+#     k=1
+#     print(topKFrequent(nums, k))
+
+
+# Approach 3: Checking for uniqueness of answer right before returning the answer
 def topKFrequent(nums, k):
     if len(nums) == 0:
         return [-1]
-
+    
     freq = {}
+
     for ele in nums:
         if freq.get(ele):
             freq[ele] += 1
         else:
             freq[ele] = 1
 
-    freq_keys = list(freq.keys())
     freq_values = list(freq.values())
-    freq_count_set = set(freq_values)
+    freq_keys = list(freq.keys())
 
-    print("Before: ", freq_keys, freq_values, freq_count_set)
+    for i in range(1, len(freq_values)):
+        prev, curr = i-1, i
 
-    if len(freq_count_set) == 1:
-        result = []
-        for i in range(-1, -k-1, -1):
-            result.append(freq_keys[i])
-        return result
-    elif len(freq_values) > len(freq_count_set):
-        return [-1]
-    else:
-        for i in range(1, len(freq_keys)):
-            prev, curr = i-1, i
+        while prev >= 0:
+            if freq_values[prev] > freq_values[curr]:
+                freq_values[prev], freq_values[curr] = freq_values[curr], freq_values[prev]
+                freq_keys[prev], freq_keys[curr] = freq_keys[curr], freq_keys[prev]
+                prev -= 1
 
-            while prev >= 0:
-                if freq_values[prev] > freq_values[curr]:
-                    freq_values[prev], freq_values[curr] = freq_values[curr], freq_values[prev]
-                    freq_keys[prev], freq_keys[curr] = freq_keys[curr], freq_keys[prev]
-                    prev -= 1
+                curr -= 1
+            else:
+                prev -= 1
+                curr -= 1
+                continue
 
-                    curr -= 1
-                else:
-                    prev -= 1
-                    curr -= 1
-                    continue
-    
-    print("After: ", freq_keys, freq_values, freq_count_set)
-    result = []
+    result_values = []
+    result_keys = []
 
     for i in range(-1, -k-1, -1):
-        result.append(freq_keys[i])
+        result_values.append(freq_values[i])
+        result_keys.append(freq_keys[i])
 
-    return result
+    result_values_set = set(result_values)
+
+    if len(result_values_set) != 1 and len(result_values_set) < k:
+        return [-1]
+    else:
+        return result_keys
+    
 
 if __name__ == "__main__":
-    nums=[3,0,1,0]
-    k=1
+    nums = [1,1,2,2]
+    k = 2
+
     print(topKFrequent(nums, k))
