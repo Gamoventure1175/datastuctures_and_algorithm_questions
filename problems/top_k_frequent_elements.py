@@ -107,11 +107,57 @@ Constraints:
 #     print(topKFrequent(nums, k))
 
 
-# Approach 3: Checking for uniqueness of answer right before returning the answer
+# Approach 3: Checking for uniqueness of answer right before returning the answer ❌
+# def topKFrequent(nums, k):
+#     if len(nums) == 0:
+#         return [-1]
+    
+#     freq = {}
+
+#     for ele in nums:
+#         if freq.get(ele):
+#             freq[ele] += 1
+#         else:
+#             freq[ele] = 1
+
+#     freq_values = list(freq.values())
+#     freq_keys = list(freq.keys())
+
+#     for i in range(1, len(freq_values)):
+#         prev, curr = i-1, i
+
+#         while prev >= 0:
+#             if freq_values[prev] > freq_values[curr]:
+#                 freq_values[prev], freq_values[curr] = freq_values[curr], freq_values[prev]
+#                 freq_keys[prev], freq_keys[curr] = freq_keys[curr], freq_keys[prev]
+#                 prev -= 1
+
+#                 curr -= 1
+#             else:
+#                 prev -= 1
+#                 curr -= 1
+#                 continue
+
+#     result_values = []
+#     result_keys = []
+
+#     for i in range(-1, -k-1, -1):
+#         result_values.append(freq_values[i])
+#         result_keys.append(freq_keys[i])
+
+#     result_values_set = set(result_values)
+
+#     if len(result_values_set) != 1 and len(result_values_set) < k:
+#         return [-1]
+#     else:
+#         return result_keys
+    
+
+# Approach 4: Skipping mannual uniqueness check completely ✅
 def topKFrequent(nums, k):
     if len(nums) == 0:
         return [-1]
-    
+
     freq = {}
 
     for ele in nums:
@@ -145,13 +191,7 @@ def topKFrequent(nums, k):
         result_values.append(freq_values[i])
         result_keys.append(freq_keys[i])
 
-    result_values_set = set(result_values)
-
-    if len(result_values_set) != 1 and len(result_values_set) < k:
-        return [-1]
-    else:
-        return result_keys
-    
+    return result_keys
 
 if __name__ == "__main__":
     nums = [1,1,2,2]
