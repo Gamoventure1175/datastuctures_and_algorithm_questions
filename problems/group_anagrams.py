@@ -42,55 +42,87 @@ The following is the code implementation of this approach:
 """
 
 
-def isValidAnagram(str1: str, str2: str):
-    if len(str1) != len(str2):
-        return False
+# def isValidAnagram(str1: str, str2: str):
+#     if len(str1) != len(str2):
+#         return False
 
-    char_counts = {}
+#     char_counts = {}
 
-    for char in str1:
-        if char_counts.get(char) == None:
-            char_counts[char] = 1
-        else:
-            char_counts[char] += 1
+#     for char in str1:
+#         if char_counts.get(char) == None:
+#             char_counts[char] = 1
+#         else:
+#             char_counts[char] += 1
 
-    for char in str2:
-        if char_counts.get(char) == None:
-            return False
-        else:
-            char_counts[char] -= 1
+#     for char in str2:
+#         if char_counts.get(char) == None:
+#             return False
+#         else:
+#             char_counts[char] -= 1
 
-    for key in char_counts:
-        if char_counts[key] != 0:
-            return False
+#     for key in char_counts:
+#         if char_counts[key] != 0:
+#             return False
 
-    return True
+#     return True
+
+
+# def groupAnagrams(strs: list[str]):
+#     is_it_checked: dict[str, bool] = {}
+
+#     groups = []
+
+#     for i in range(len(strs)):
+#         if is_it_checked.get(strs[i]):
+#             continue
+
+#         group = []
+#         group.append(strs[i])
+#         is_it_checked[strs[i]] = True
+
+#         for j in range(i + 1, len(strs)):
+#             if isValidAnagram(strs[i], strs[j]):
+#                 group.append(strs[j])
+#                 is_it_checked[strs[j]] = True
+
+#         groups.append(group)
+
+#     return groups
+
+
+# if __name__ == "__main__":improved implementation (tuple-of-counts + defaultdict) and a tiny benchmark comparing both approaches
+#     strs = ["act", "pots", "tops", "cat", "stop", "hat"]
+
+#     print(groupAnagrams(strs))
+
+
+# Approach 2: Understanding the underlying pattern to match and grouping the similar ones
+
+
+def char_count_patrn(string: str) -> frozenset:
+    char_count = {}
+    for char in string:
+        char_count[char] = char_count.get(char, 0) + 1
+
+    pattern = frozenset(char_count.items())
+    return pattern
 
 
 def groupAnagrams(strs: list[str]):
-    is_it_checked: dict[str, bool] = {}
+    anagram_groups: dict[frozenset, list[str]] = {}
 
-    groups = []
+    for string in strs:
+        str_anag_patrn = char_count_patrn(string)
 
-    for i in range(len(strs)):
-        if is_it_checked.get(strs[i]):
-            continue
+        group = anagram_groups.get(str_anag_patrn, [])
 
-        group = []
-        group.append(strs[i])
-        is_it_checked[strs[i]] = True
+        group.append(string)
 
-        for j in range(i + 1, len(strs)):
-            if isValidAnagram(strs[i], strs[j]):
-                group.append(strs[j])
-                is_it_checked[strs[j]] = True
+        anagram_groups[str_anag_patrn] = group
 
-        groups.append(group)
-
-    return groups
+    return list(anagram_groups.values())
 
 
 if __name__ == "__main__":
     strs = ["act", "pots", "tops", "cat", "stop", "hat"]
-
     print(groupAnagrams(strs))
