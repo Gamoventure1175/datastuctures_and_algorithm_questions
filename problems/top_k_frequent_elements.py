@@ -1,4 +1,4 @@
-'''
+"""
 Given an integer array nums and an integer k, return the k most frequent elements within the array.
 
 The test cases are generated such that the answer is always unique.
@@ -20,23 +20,23 @@ Constraints:
 1 <= nums.length <= 10^4.
 -1000 <= nums[i] <= 1000
 1 <= k <= number of distinct elements in nums.
-'''
+"""
 
 # Approach 1: Using a Counter dictionary to get count of the numbers and return output based on that ❌
 # def topKFrequent(input, k):
 #     if len(input) == 0:
 #         return [-1]
-        
+
 #     from collections import Counter
 #     freqCount = Counter(input)
 #     freqCountItems = list(freqCount.items()) # Used later on for appending these keys to output
 #     print(f'Dictionary: {freqCount}')
 #     print(f'Keys: {freqCountItems}')
 #     output = []
-#     freqSet = set()    
+#     freqSet = set()
 #     for value in freqCount.values():
 #         freqSet.add(value)
-    
+
 #     if len(freqSet) != len(freqCount):
 #         return [-1]
 #     else:
@@ -48,7 +48,7 @@ Constraints:
 #     nums = [1,1,1,2,2,3]
 #     k = 2
 
-    
+
 #     print(topKFrequent(nums, k))
 
 
@@ -92,7 +92,7 @@ Constraints:
 #                     prev -= 1
 #                     curr -= 1
 #                     continue
-    
+
 #     print("After: ", freq_keys, freq_values, freq_count_set)
 #     result = []
 
@@ -111,7 +111,7 @@ Constraints:
 # def topKFrequent(nums, k):
 #     if len(nums) == 0:
 #         return [-1]
-    
+
 #     freq = {}
 
 #     for ele in nums:
@@ -151,50 +151,78 @@ Constraints:
 #         return [-1]
 #     else:
 #         return result_keys
-    
 
-# Approach 4: Skipping mannual uniqueness check completely ✅
-def topKFrequent(nums, k):
-    if len(nums) == 0:
-        return [-1]
 
-    freq = {}
+# # Approach 4: Skipping mannual uniqueness check completely ✅
+# def topKFrequent(nums, k):
+#     if len(nums) == 0:
+#         return [-1]
 
-    for ele in nums:
-        if freq.get(ele):
-            freq[ele] += 1
-        else:
-            freq[ele] = 1
+#     freq = {}
 
-    freq_values = list(freq.values())
-    freq_keys = list(freq.keys())
+#     for ele in nums:
+#         if freq.get(ele):
+#             freq[ele] += 1
+#         else:
+#             freq[ele] = 1
 
-    for i in range(1, len(freq_values)):
-        prev, curr = i-1, i
+#     freq_values = list(freq.values())
+#     freq_keys = list(freq.keys())
 
-        while prev >= 0:
-            if freq_values[prev] > freq_values[curr]:
-                freq_values[prev], freq_values[curr] = freq_values[curr], freq_values[prev]
-                freq_keys[prev], freq_keys[curr] = freq_keys[curr], freq_keys[prev]
-                prev -= 1
+#     for i in range(1, len(freq_values)):
+#         prev, curr = i-1, i
 
-                curr -= 1
-            else:
-                prev -= 1
-                curr -= 1
-                continue
+#         while prev >= 0:
+#             if freq_values[prev] > freq_values[curr]:
+#                 freq_values[prev], freq_values[curr] = freq_values[curr], freq_values[prev]
+#                 freq_keys[prev], freq_keys[curr] = freq_keys[curr], freq_keys[prev]
+#                 prev -= 1
 
-    result_values = []
-    result_keys = []
+#                 curr -= 1
+#             else:
+#                 prev -= 1
+#                 curr -= 1
+#                 continue
 
-    for i in range(-1, -k-1, -1):
-        result_values.append(freq_values[i])
-        result_keys.append(freq_keys[i])
+#     result_values = []
+#     result_keys = []
 
-    return result_keys
+#     for i in range(-1, -k-1, -1):
+#         result_values.append(freq_values[i])
+#         result_keys.append(freq_keys[i])
+
+#     return result_keys
+
+# if __name__ == "__main__":
+#     nums = [1,1,2,2]
+#     k = 2
+
+#     print(topKFrequent(nums, k))
+
+
+# Approach 5: Using a dictionary
+
+
+def topKFrequent(nums: list[int], k: int) -> list[int]:
+    frequencies = {}
+    for num in nums:
+        frequencies[num] = frequencies.get(num, 0) + 1
+
+    frequency_number = {}
+    for num, freq in frequencies.items():
+        group = frequency_number.get(freq, [])
+        group.append(num)
+        frequency_number[freq] = group
+
+    top_frequency_elements = []
+    for i in range(len(nums), 0, -1):
+        if frequency_number.get(i):
+            top_frequency_elements.extend(frequency_number[i])
+
+    return top_frequency_elements[0:k]
+
 
 if __name__ == "__main__":
-    nums = [1,1,2,2]
-    k = 2
+    result = topKFrequent([1, 2], k=3)
 
-    print(topKFrequent(nums, k))
+    print(result)
