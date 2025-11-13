@@ -200,29 +200,53 @@ Constraints:
 #     print(topKFrequent(nums, k))
 
 
-# Approach 5: Using a dictionary
+# Approach 5: Using a dictionary to do something
+
+
+# def topKFrequent(nums: list[int], k: int) -> list[int]:
+#     frequencies = {}
+#     for num in nums:
+#         frequencies[num] = frequencies.get(num, 0) + 1
+
+#     frequency_number = {}
+#     for num, freq in frequencies.items():
+#         group = frequency_number.get(freq, [])
+#         group.append(num)
+#         frequency_number[freq] = group
+
+#     top_frequency_elements = []
+#     for i in range(len(nums), 0, -1):
+#         if frequency_number.get(i):
+#             top_frequency_elements.extend(frequency_number[i])
+
+#     return top_frequency_elements[0:k]
+
+
+# if __name__ == "__main__":
+#     result = topKFrequent([1, 2], k=3)
+
+#     print(result)
+
+# Approach 6: Using buckets made of lists inside a list
 
 
 def topKFrequent(nums: list[int], k: int) -> list[int]:
-    frequencies = {}
-    for num in nums:
-        frequencies[num] = frequencies.get(num, 0) + 1
+    # 1. Count frequencies
+    freq = {}
+    for n in nums:
+        freq[n] = freq.get(n, 0) + 1
 
-    frequency_number = {}
-    for num, freq in frequencies.items():
-        group = frequency_number.get(freq, [])
-        group.append(num)
-        frequency_number[freq] = group
+    # 2. Create buckets: index = frequency
+    # max frequency cannot exceed len(nums)
+    buckets = [[] for _ in range(len(nums) + 1)]
 
-    top_frequency_elements = []
-    for i in range(len(nums), 0, -1):
-        if frequency_number.get(i):
-            top_frequency_elements.extend(frequency_number[i])
+    for num, count in freq.items():
+        buckets[count].append(num)
 
-    return top_frequency_elements[0:k]
-
-
-if __name__ == "__main__":
-    result = topKFrequent([1, 2], k=3)
-
-    print(result)
+    # 3. Gather results from highest frequency bucket downward
+    res = []
+    for count in range(len(buckets) - 1, 0, -1):
+        for num in buckets[count]:
+            res.append(num)
+            if len(res) == k:
+                return res
