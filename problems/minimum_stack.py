@@ -55,80 +55,127 @@ You must implement a solution with O(1) time complexity for each function.
 
 
 # Approach 2: Using 2 stacks ✅
+# class MinStack:
+#     def __init__(self):
+#         self._minStack = []
+#         self._stack = []
+#         self._n = 0
+#         self._min = None
+
+#     def __len__(self):
+#         return self._n
+
+#     def __repr__(self):
+#         sample = ""
+#         for i in range(self._n - 1, -1, -1):
+#             sample += "| " + str(self._stack[i]) + " |" + "\n"
+#         return sample
+
+#     def push(self, val):
+#         if self._min == None:
+#             self._min = val
+#         else:
+#             self._min = min(self._min, val)
+
+#         self._n += 1
+#         self._minStack.append(self._min)
+#         self._stack.append(val)
+
+#     def top(self):
+#         if self._n == 0:
+#             raise Exception("Cannot view top element of an empty stack")
+#         top_element = self._stack[-1]
+#         return top_element
+
+#     def pop(self):
+#         if self._n == 0:
+#             raise Exception("Cannot pop elements from an empty stack")
+#         self._n -= 1
+#         self._minStack.pop()
+#         if len(self._minStack) != 0:
+#             self._min = self._minStack[-1]
+#         else:
+#             self._min = None
+#         return self._stack.pop()
+
+#     def getMin(self):
+#         if self._n == 0:
+#             raise Exception("Cannot return a minimum element from an empty stack")
+#         return self._minStack[-1]
+
+
+# if __name__ == "__main__":
+#     test = MinStack()
+#     # Trying to do operations on an empty stack
+#     # test.pop()
+#     # test.getMin()
+#     # test.top()
+
+#     test.push(-1)
+#     test.push(4)
+#     test.push(-2)
+#     test.push(10)
+#     test.push(2)
+
+#     print(f"Stack: \n {test}")
+#     print(f"Length of the stack: {len(test)}")
+#     print(f"Top element of the stack: {test.top()}")
+#     print(f"Minimum element from the stack: {test.getMin()}")
+
+#     # Popping elements from the stack
+#     for i in range(len(test)):
+#         test.pop()
+#         if len(test) == 0:
+#             break
+#         print("State of the stack after just popping an element")
+#         print(f"Stack: \n {test}")
+#         print(f"Length of the stack: {len(test)}")
+#         print(f"Top element of the stack: {test.top()}")
+#         print(f"Minimum element from the stack: {test.getMin()}")
+
+
+# Approach 3 : Using python's list object
+
+
 class MinStack:
     def __init__(self):
-        self._minStack = []
-        self._stack = []
-        self._n = 0
-        self._min = None
+        self._A = []
+        self._min_stack = []
 
-    def __len__(self):
-        return self._n
+    def push(self, num):
 
-    def __repr__(self):
-        sample = ""
-        for i in range(self._n - 1, -1, -1):
-            sample += "| " + str(self._stack[i]) + " |" + "\n"
-        return sample
+        if self._min_stack:
+            last_min = self._min_stack[-1]
+            if num <= last_min:
+                self._min_stack.append(num)
+            else:
+                self._min_stack.append(last_min)
 
-    def push(self, val):
-        if self._min == None:
-            self._min = val
-        else:
-            self._min = min(self._min, val)
+        if not self._min_stack:
+            self._min_stack.append(num)
 
-        self._n += 1
-        self._minStack.append(self._min)
-        self._stack.append(val)
-
-    def top(self):
-        if self._n == 0:
-            raise Exception("Cannot view top element of an empty stack")
-        top_element = self._stack[-1]
-        return top_element
+        self._A.append(num)
 
     def pop(self):
-        if self._n == 0:
-            raise Exception("Cannot pop elements from an empty stack")
-        self._n -= 1
-        self._minStack.pop()
-        if len(self._minStack) != 0:
-            self._min = self._minStack[-1]
-        else:
-            self._min = None
-        return self._stack.pop()
+        self._min_stack.pop()
+        return self._A.pop()
+
+    def top(self):
+        return self._A[-1]
 
     def getMin(self):
-        if self._n == 0:
-            raise Exception("Cannot return a minimum element from an empty stack")
-        return self._minStack[-1]
+        return self._min_stack[-1]
 
 
 if __name__ == "__main__":
-    test = MinStack()
-    # Trying to do operations on an empty stack
-    # test.pop()
-    # test.getMin()
-    # test.top()
+    stack = MinStack()
+    stack.push(5)
+    stack.push(0)
+    stack.push(2)
+    stack.push(4)
 
-    test.push(-1)
-    test.push(4)
-    test.push(-2)
-    test.push(10)
-    test.push(2)
-
-    print(f"Stack: \n {test}")
-    print(f"Length of the stack: {len(test)}")
-    print(f"Top element of the stack: {test.top()}")
-    print(f"Minimum element from the stack: {test.getMin()}")
-
-    # Popping elements from the stack
-    for i in range(len(test)):
-        test.pop()
-        if len(test) == 0:
-            break
-        print("State of the stack after just popping an element")
-        print(f"Stack: \n {test}")
-        print(f"Length of the stack: {len(test)}")
-        print(f"Top element of the stack: {test.top()}")
-        print(f"Minimum element from the stack: {test.getMin()}")
+    stack.getMin()
+    stack.pop()
+    stack.getMin()
+    stack.pop()
+    print(stack.getMin())
