@@ -139,32 +139,23 @@ You must implement a solution with O(1) time complexity for each function.
 
 class MinStack:
     def __init__(self):
-        self._A = []
-        self._min_stack = []
+        self._stack = []
 
     def push(self, num):
-
-        if self._min_stack:
-            last_min = self._min_stack[-1]
-            if num <= last_min:
-                self._min_stack.append(num)
-            else:
-                self._min_stack.append(last_min)
-
-        if not self._min_stack:
-            self._min_stack.append(num)
-
-        self._A.append(num)
+        if not self._stack:
+            self._stack.append((num, num))
+        else:
+            min_so_far = min(self._stack[-1][-1], num)
+            self._stack.append((num, min_so_far))
 
     def pop(self):
-        self._min_stack.pop()
-        return self._A.pop()
+        return self._stack.pop()[0]
 
     def top(self):
-        return self._A[-1]
+        return self._stack[-1][0]
 
     def getMin(self):
-        return self._min_stack[-1]
+        return self._stack[-1][-1]
 
 
 if __name__ == "__main__":
