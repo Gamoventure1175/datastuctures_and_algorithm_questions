@@ -1,0 +1,18 @@
+1. Spent 30 mins on problem - Complete raw, without any help or hins (completely based on thought process)
+2. Check hints in questions description
+    - try again with hint
+3. Use chat GPT as Mentor
+4. Try again with chat GPT hints.
+
+-------- worst case ------
+
+5. Watch youtube solution explanation
+    --- conceptual explantaion (try to implement)
+    --- watch code part as well.
+
+
+-------- more worst case ------
+
+6. Doesn't understand the youtube solution video as well.
+    -- Skip it for now (add in remonder to revisit after few days)
+    -- try to read about patterns present in this question
