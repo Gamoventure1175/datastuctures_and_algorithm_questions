@@ -59,7 +59,79 @@ Constraints:
 #     nums = [-1, 0, 1, 2, -1, -4]
 #     print(threeSum(nums=nums))
 
-# Approach 2: Using two pointers
+# Approach 2: Using two pointers approach
+
+
+def merge(L, R):
+    result = []
+    i = 0
+    j = 0
+
+    n1 = len(L)
+    n2 = len(R)
+
+    while i < n1 and j < n2:
+        if L[i] <= R[j]:
+            result.append(L[i])
+            i += 1
+        else:
+            result.append(R[j])
+            j += 1
+
+    while i < n1:
+        result.append(L[i])
+        i += 1
+
+    while j < n2:
+        result.append(R[j])
+        j += 1
+
+    return result
+
+
+def merge_sort(nums: list[int]) -> list[int]:
+    if len(nums) <= 1:
+        return nums
+
+    mid = len(nums) // 2
+    left = nums[:mid]
+    right = nums[mid : len(nums)]
+
+    sorted_left = merge_sort(left)
+    sorted_right = merge_sort(right)
+
+    return merge(sorted_left, sorted_right)
+
 
 def threeSum(nums):
-     
+    sorted_nums = merge_sort(nums)
+
+    triplets = []
+
+    for num in sorted_nums:
+        target = -num
+
+        first_pointer = 0
+        second_pointer = len(nums) - 1
+
+        for i in range(len(sorted_nums)):
+            if sorted_nums[first_pointer] == num or sorted_nums[second_pointer] == num:
+                continue
+
+            pointer_sums = sorted_nums[first_pointer] + sorted_nums[second_pointer]
+
+            if pointer_sums == target:
+                triplets.append(
+                    [num, sorted_nums[first_pointer], sorted_nums[second_pointer]]
+                )
+
+            elif pointer_sums > target:
+                second_pointer -= 1
+            else:
+                first_pointer += 1
+
+    return triplets
+
+
+if __name__ == "__main__":
+    print(threeSum([-1, 0, 1, 2, -1, -4]))
