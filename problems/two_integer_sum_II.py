@@ -39,7 +39,7 @@ The following is the code implementation of the above
 def twoSum(numbers: list[int], target: int):
     first_pointer = 0
     second_pointer = len(numbers) - 1
-    for i in range(len(numbers)):
+    while first_pointer < second_pointer:
         if numbers[first_pointer] + numbers[second_pointer] == target:
             return [first_pointer + 1, second_pointer + 1]
         elif numbers[first_pointer] + numbers[second_pointer] > target:
