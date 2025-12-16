@@ -103,35 +103,76 @@ def merge_sort(nums: list[int]) -> list[int]:
     return merge(sorted_left, sorted_right)
 
 
-def threeSum(nums):
-    sorted_nums = merge_sort(nums)
+# def threeSum(nums):
+#     sorted_nums = merge_sort(nums)
 
-    triplets = []
+#     triplets = []
 
-    for num in sorted_nums:
-        target = -num
+#     for num in sorted_nums:
+#         target = -num
 
-        first_pointer = 0
-        second_pointer = len(nums) - 1
+#         first_pointer = 0
+#         second_pointer = len(nums) - 1
 
-        for i in range(len(sorted_nums)):
-            if sorted_nums[first_pointer] == num or sorted_nums[second_pointer] == num:
-                continue
+#         for i in range(len(sorted_nums)):
+#             if sorted_nums[first_pointer] == num or sorted_nums[second_pointer] == num:
+#                 continue
 
-            pointer_sums = sorted_nums[first_pointer] + sorted_nums[second_pointer]
+#             pointer_sums = sorted_nums[first_pointer] + sorted_nums[second_pointer]
 
-            if pointer_sums == target:
-                triplets.append(
-                    [num, sorted_nums[first_pointer], sorted_nums[second_pointer]]
-                )
+#             if pointer_sums == target:
+#                 triplets.append(
+#                     [num, sorted_nums[first_pointer], sorted_nums[second_pointer]]
+#                 )
 
-            elif pointer_sums > target:
-                second_pointer -= 1
-            else:
-                first_pointer += 1
+#             elif pointer_sums > target:
+#                 second_pointer -= 1
+#             else:
+#                 first_pointer += 1
+
+#     return triplets
+
+
+# if __name__ == "__main__":
+#     print(threeSum([-1, 0, 1, 2, -1, -4]))
+
+
+# Approach 3: 3 sum converted to 2 sum but without repetition?
+# I still think that sorting the array is beneficial, so I am going to keep that part atleast
+
+
+def three_sum(nums: list[int]) -> list[list[int]]:
+    nums.sort()
+    triplets: list[list[int]] = []
+    n = len(nums)
+
+    for i in range(n - 2):
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+
+        left = i + 1
+        right = n - 1
+
+        while left < right:
+            pointers_sum = nums[i] + nums[left] + nums[right]
+            if pointers_sum < 0:
+                left += 1
+            elif pointers_sum > 0:
+                right -= 1
+            elif pointers_sum == 0:
+                triplets.append([nums[i], nums[left], nums[right]])
+                left += 1
+                right -= 1
+
+                while left < right and nums[left] == nums[left - 1]:
+                    left += 1
+
+                while left < right and nums[right] == nums[right + 1]:
+                    right -= 1
 
     return triplets
 
 
 if __name__ == "__main__":
-    print(threeSum([-1, 0, 1, 2, -1, -4]))
+    sample = [-1, 0, 1, 2, -1, -4]
+    print(three_sum(sample))
