@@ -7,17 +7,11 @@
 # 	is_empty
 # 	len
 
-# I use a hidden instance of the dynamic array as the underlying array
-# I also define a custom exception for the stack for when it is empty and a pop operation is done on it
-
 
 class Empty(Exception):
     """Error attempting to access an element from an empty container"""
 
     pass
-
-
-from datastructures.dynamic_arrray import DynamicArray
 
 
 class ArrayStack:
@@ -39,11 +33,11 @@ class ArrayStack:
         """Return an instance of the element at the top"""
         if self.is_empty():
             raise Empty("Stack is empty")
-        return self._stack[len(self._stack) - 1]
+        return self._stack[-1]
 
     def is_empty(self):
         """Return true if the stack is empty"""
-        if len(self._stack) == 0:
+        if not len(self._stack):
             return True
         return False
 
