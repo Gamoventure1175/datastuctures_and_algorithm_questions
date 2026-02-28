@@ -14,5 +14,5 @@
 -------- more worst case ------
 
 6. Doesn't understand the youtube solution video as well.
-    -- Skip it for now (add in remonder to revisit after few days)
+    -- Skip it for now (add in reminder to revisit after few days)
     -- try to read about patterns present in this question
