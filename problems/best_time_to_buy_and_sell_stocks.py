@@ -31,23 +31,38 @@ Constraints:
 
 """
 
-
 # Approach 1: Using dynamic sliding window
+# class Solution:
+#     def maxProfit(self, prices: list[int]) -> int:
+#         left = 0
+#         profit = max(0, (prices[left + 1] - prices[left]))
+
+#         for right in range(left + 2, len(prices)):
+#             while prices[left] >= min(prices[left], prices[right]):
+#                 left += 1
+#             profit = max(0, (prices[right] - prices[left]))
+
+#         return profit
+
+
+# if __name__ == "__main__":
+#     prices = [5, 1, 5, 6, 7, 1]
+
+#     solve = Solution()
+#     print(solve.maxProfit(prices))
+
+
+# Approach 2: Dynamic sliding window
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
-        left = 0
-        profit = max(0, (prices[left + 1] - prices[left]))
+        l, r = 0, 1
+        profit = 0
 
-        for right in range(left + 2, len(prices)):
-            while prices[left] >= min(prices[left], prices[right]):
-                left += 1
-            profit = max(0, (prices[right] - prices[left]))
+        while r < len(prices):
+            if prices[l] >= prices[r]:
+                l = r
 
+            profit = max(profit, prices[r] - prices[l])
+
+            r += 1
         return profit
-
-
-if __name__ == "__main__":
-    prices = [5, 1, 5, 6, 7, 1]
-
-    solve = Solution()
-    print(solve.maxProfit(prices))
