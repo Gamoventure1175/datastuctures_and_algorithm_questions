@@ -63,6 +63,51 @@ def isAnagram(s, t):
     return True
 
 
+# Approach 2: Using array as count bucket
+class Solution:
+    # def isAnagram(self, s: str, t: str) -> bool:
+    #     if len(s) != len(t):
+    #         return False
+
+    #     charCount = [0] * 26
+
+    #     for i in range(len(s)):
+    #         charCount[ord(s[i]) - ord("a")] += 1
+    #         charCount[ord(t[i]) - ord("a")] -= 1
+
+    #     for count in charCount:
+    #         if count != 0:
+    #             return False
+
+    #     return True
+
+    # Approach 3: Using hasmap for unicode characters
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        charCount = {}
+
+        for char in s:
+            charCount[char] = charCount.get(char, 0) + 1
+
+        for char in t:
+            if char not in charCount:
+                return False
+
+            charCount[char] -= 1
+
+            if charCount[char] < 0:
+                return False
+
+        return True
+
+
 if __name__ == "__main__":
-    result = isAnagram("gaurav", "auravg")
-    print(result)
+    # result = isAnagram("gaurav", "auravg")
+    # print(result)
+
+    question = Solution()
+    s = "gaurav#"
+    t = "auragv#"
+    print(question.isAnagram(s, t))
