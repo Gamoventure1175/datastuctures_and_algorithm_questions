@@ -27,23 +27,49 @@ Constraints:
 
 # Approach 1: Using a hashmap
 class Solution:
-    def containsNearByDuplicate(self, nums: list[int], k: int) -> bool:
-        seenNumbers = {}
+    # def containsNearbyDuplicate(self, nums: list[int], k: int) -> bool:
+    #     seenNumbers = {}
 
-        for index, num in enumerate(nums):
+    #     for index, num in enumerate(nums):
 
-            if num in seenNumbers:
-                seenIndex = seenNumbers[num]
-                if abs(seenIndex - index) <= k:
-                    return True
+    #         if num in seenNumbers:
+    #             seenIndex = seenNumbers[num]
+    #             if abs(seenIndex - index) <= k:
+    #                 return True
 
-            seenNumbers[num] = index
+    #         seenNumbers[num] = index
+
+    #     return False
+
+    # Approach 2: Using a k fixed size hashmap with k size sliding window
+    def containsNearbyDuplicate(self, nums: list[int], k: int) -> bool:
+        seenNumbers = set()
+        l = r = 0
+
+        while r < len(nums):
+            if r - l > k:
+                seenNumbers.remove(nums[l])
+                l += 1
+
+            current_num = nums[r]
+
+            if current_num in seenNumbers:
+                return True
+
+            seenNumbers.add(current_num)
+
+            r += 1
 
         return False
 
 
 if __name__ == "__main__":
     question = Solution()
-    nums = [1, 2, 3, 1, 2, 3]
-    k = 2
-    print(question.containsNearByDuplicate(nums, k))
+    nums = [
+        1,
+        0,
+        1,
+        1,
+    ]
+    k = 1
+    print(question.containsNearbyDuplicate(nums, k))
