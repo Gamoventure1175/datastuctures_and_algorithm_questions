@@ -88,6 +88,23 @@ def twoSum(nums: list[int], target: int):
             return [i, possible_index]
 
 
+# Approach 4: Using simplified hash map
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        num_lookup = {}
+        for index, num in enumerate(nums):
+            diff = target - num
+            if diff in num_lookup:
+                found_index = num_lookup[diff]
+                return (
+                    [index, found_index]
+                    if found_index > index
+                    else [found_index, index]
+                )
+
+            num_lookup[num] = index
+
+
 if __name__ == "__main__":
     nums = [1, 3, 4, 2]
     target = 6
