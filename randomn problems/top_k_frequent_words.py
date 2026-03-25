@@ -34,23 +34,6 @@ Follow-up: Could you solve it in O(n log(k)) time and O(n) extra space?
 
 class Solution:
 
-    def word_to_pattern(self, word: str) -> tuple:
-        bucket = [0] * 26
-
-        for char in word:
-            bucket[ord(char) - ord("a")] += 1
-
-        return tuple(bucket)
-
-    def pattern_to_word(self, pattern: tuple) -> str:
-        word = ""
-        for i in range(len(pattern)):
-            if pattern[i]:
-                for _ in range(pattern[i]):
-                    char = chr(ord("a") + i)
-                    word += char
-        return word
-
     def topKFrequent(self, words: list[str], k: int) -> list[str]:
         word_freq = {}
 
