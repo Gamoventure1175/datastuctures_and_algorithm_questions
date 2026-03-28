@@ -22,28 +22,53 @@ Constraints:
 1 <= k <= nums.length
 """
 
-
 # Approach 1: Failed
+# class Solution:
+#     from collections import deque
+
+#     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
+#         current_window = self.deque()
+#         result = []
+
+#         l = 0
+#         for r in range(len(nums)):
+#             current_window.append(nums[r])
+
+#             if current_window[0] < nums[r]:
+#                 current_window.popleft()
+#                 current_window.append(nums[r])
+
+#             if (r - l + 1) > k:
+#                 result.append(current_window.pop())
+#                 l += 1
+
+#         return result
+
+
+# Approach 2: Using a queue
 class Solution:
     from collections import deque
 
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
-        current_window = self.deque()
-        result = []
+        output = []
+        q = self.deque()
+        l = r = 0
 
-        l = 0
-        for r in range(len(nums)):
-            current_window.append(nums[r])
+        while r < len(nums):
+            while q and nums[q[-1]] < nums[r]:
+                q.pop()
+            q.append(r)
 
-            if current_window[0] < nums[r]:
-                current_window.popleft()
-                current_window.append(nums[r])
+            # remove left val from window
+            if l > q[0]:
+                q.popleft()
 
-            if (r - l + 1) > k:
-                result.append(current_window.pop())
+            if (r + 1) >= k:
+                output.append(nums[q[0]])
                 l += 1
+            r += 1
 
-        return result
+        return output
 
 
 if __name__ == "__main__":
