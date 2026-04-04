@@ -30,28 +30,15 @@ class ListNode:
         self.next = next
 
 
-class DoublyLinkedNode:
-    def __init__(self, val=0, next=None, prev=None):
-        self.val = val
-        self.next = next
-        self.prev = prev
-
-
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         curr = head
         prev = None
 
         while curr:
-
             next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
 
-
-if __name__ == "__main__":
-    solution = Solution()
-
-    node = ListNode(1)
-
-    for i in range(2, 11):
-        node.next = ListNode(i)
-        node = node.next
+        return prev
