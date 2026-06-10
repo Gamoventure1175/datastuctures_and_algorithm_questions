@@ -78,3 +78,34 @@ output/
 # IDE / editor files
 .vscode/
 .idea/
+
+# Executables
+*.out
+*.exe
+*.app
+
+# Object files
+*.o
+*.obj
+
+# Libraries
+*.a
+*.so
+*.dll
+
+# Build folders
+build/
+bin/
+cmake-build-*/
+
+# VSCode
+.vscode/
+
+# CLion
+.idea/
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db

@@ -1,49 +1,149 @@
-# 📚 Data Structures and Algorithms 1.1
+# Data Structures & Algorithms
 
-Welcome to **Data Structures and Algorithms 1.1** –
-a structured vault for notes, implementations, and solved problems gathered during my DSA learning journey.
+This repository documents my journey of learning Data Structures, Algorithms, and Problem Solving through deliberate practice and consistent revision.
+
+The goal of this repository is not merely to collect accepted solutions, but to develop strong problem-solving skills, pattern recognition, and a deep understanding of fundamental computer science concepts.
 
 ---
 
-## 📌 What you will find here
+## 🎯 Objectives
 
-✅ **Structured Notes**
-Concise explanations of core data structures, algorithms, and key patterns with examples.
+* Strengthen Data Structures and Algorithms fundamentals.
+* Improve problem-solving and analytical thinking.
+* Build pattern recognition across problem categories.
+* Prepare for coding interviews.
+* Maintain a long-term revision and reference resource.
 
-✅ **Data Structure Implementations**
-Clean, testable Python implementations of:
+---
 
-* Linked Lists (Singly, Doubly, Circular)
-* Trees and Binary Trees
-* Heaps
-* Graph Representations
-* Stacks, Queues, Deques
-* Sorting and Searching algorithms
+## 📚 Problem Sources
 
-✅ **Problem Solving Archive**
-A dedicated folder accounting for problems solved over the years:
+Problems solved in this repository may come from:
 
 * LeetCode
 * NeetCode
+* Interview preparation sheets
+* Online judges
+* Books and educational resources
 
-and many more sources.....
-
----
-
-## 🚀 Why this repository?
-
-This repository serves as:
-
-* A **revision vault** before coding interviews.
-* A **clean reference** for DSA implementation syntax.
-* A **growth tracker** showcasing progress across years.
-* An **open learning resource** for anyone seeking clean, understandable DSA materials.
+Problems are organized according to their primary topic rather than their source.
 
 ---
 
-## 🤝 Feel free to use it!
+## 🧠 Problem Solving Workflow
 
-If you find anything helpful:
+For every problem, I follow the process below.
 
-* Use it for your DSA practice.
-* Clone and maintain your own vault.
+### Step 1 — Independent Attempt
+
+**Maximum Time: 30 Minutes**
+
+* Read and understand the problem.
+* Identify constraints.
+* Consider brute force solutions.
+* Search for patterns.
+* Attempt a complete solution independently.
+
+If solved:
+
+* Implement the solution.
+* Analyze time complexity.
+* Analyze space complexity.
+* Document important observations.
+
+---
+
+### Step 2 — Problem Hints
+
+If unable to solve:
+
+* Read hints provided in the problem statement.
+* Reattempt the problem using only those hints.
+
+---
+
+### Step 3 — Guided Mentorship
+
+If still stuck:
+
+* Seek guided hints and direction.
+* Focus on understanding the thought process.
+* Avoid direct solutions whenever possible.
+
+---
+
+### Step 4 — Reattempt
+
+Using the guidance obtained:
+
+* Attempt the solution again.
+* Explain the reasoning.
+* Implement independently.
+
+---
+
+## ⚠️ Worst Case
+
+### Step 5 — Solution Explanation
+
+If the problem remains unsolved:
+
+#### Conceptual Understanding
+
+* Watch or read an explanation of the intuition.
+* Identify the pattern being used.
+* Understand why the approach works.
+
+Attempt implementation before looking at code.
+
+#### Implementation Study
+
+If implementation still fails:
+
+* Study implementation details.
+* Reimplement from memory.
+* Verify understanding through dry runs.
+
+---
+
+## 🚨 Last Resort
+
+### Step 6 — Strategic Skip
+
+If the solution still does not make sense:
+
+* Skip the problem temporarily.
+* Return after a few days.
+* Study the underlying pattern separately.
+
+Examples:
+
+* Two Pointers
+* Sliding Window
+* Prefix Sum
+* Hashing
+* Binary Search
+* Monotonic Stack
+* Tree Traversals
+* Dynamic Programming
+* Graph Traversals
+* Greedy Algorithms
+
+The goal is to understand the pattern rather than memorize a specific solution.
+
+---
+
+## 💡 Learning Philosophy
+
+An accepted solution does not necessarily mean the problem has been learned.
+
+A problem is considered mastered only when I can:
+
+1. Explain the intuition.
+2. Explain the algorithm.
+3. Analyze time complexity.
+4. Analyze space complexity.
+5. Reimplement the solution without assistance.
+6. Recognize the underlying pattern in future problems.
+
+The focus is on understanding and long-term retention rather than maximizing the number of solved problems.
