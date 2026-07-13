@@ -48,7 +48,21 @@ Constraints:
 # Attempt 2: Trying to find a better approach
 class Solution:
     def sequentialDigits(self, low: int, high: int) -> List[int]:
-        
+        sample = "123456789"
+        result = []
+
+        min_length = len(str(low))
+        max_length = len(str(high))
+ 
+        for length in range(min_length, max_length+1):
+            for i in range(10-length):
+                test = int(sample[i: i+length])
+
+                if low <= test <= high:
+                    result.append(test)
+
+        return result
+
 
 if __name__ == "__main__":
     sol = Solution()
