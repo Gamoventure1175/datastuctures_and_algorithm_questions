@@ -43,27 +43,27 @@ class ListNode:
         self.next = next
 
 
-class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        if not head:
-            return False
-
-        fast = slow = head
-
-        while fast and slow:
-
-            if not fast.next:
-                return False
-            if not slow.next:
-                return False
-
-            fast = fast.next.next
-            slow = slow.next
-
-            if fast == slow:
-                return True
-
-        return False
+#class Solution:
+#    def hasCycle(self, head: Optional[ListNode]) -> bool:
+#        if not head:
+#            return False
+#
+#        fast = slow = head
+#
+#        while fast and slow:
+#
+#            if not fast.next:
+#                return False
+#            if not slow.next:
+#                return False
+#
+#            fast = fast.next.next
+#            slow = slow.next
+#
+#            if fast == slow:
+#                return True
+#
+#        return False
     
 # Much cleaner
 
@@ -78,3 +78,19 @@ class Solution:
     #             return True
 
     #     return False
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if head is None or head.next is None: return False
+        def traverse(p, q):
+            if p and q is None:
+                return False
+            
+            if p and q and p is q: return True
+
+            if p.next and q.next is not None:
+                return traverse(p.next, q.next.next)
+            else:
+                return False
+
+        return traverse(head, head.next.next)
