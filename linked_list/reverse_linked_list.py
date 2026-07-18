@@ -29,20 +29,36 @@ class ListNode:
         self.val = val
         self.next = next
 
+# Attempt 1: Using intuition
+#class Solution:
+#    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#        prev = None
+#        curr = head
+#
+#        if curr is None:
+#            return
+#
+#        while curr is not None:
+#            temp = curr.next
+#            curr.next = prev
+#
+#            prev = curr
+#            curr = temp
+#
+#        return prev
 
+
+# Attempt 2: Using recurssion:
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        prev = None
-        curr = head
-
-        if curr is None:
-            return
-
-        while curr is not None:
-            temp = curr.next
-            curr.next = prev
-
-            prev = curr
-            curr = temp
-
-        return prev
+        def traverse(left: Optional[ListNode], right: Optional[ListNode]):
+            if left and right is None:
+                return left
+            
+            if left is None and right is None:
+                return None
+            
+            curr = right.next
+            right.next = left
+        
+            return traverse(right, curr)
