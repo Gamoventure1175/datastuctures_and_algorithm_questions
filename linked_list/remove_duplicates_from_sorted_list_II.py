@@ -32,23 +32,59 @@ class ListNode:
 
 # Attempt 1: Using intuition
 # Failed with this solution
-class Solution:
-    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head is None: return head
+#class Solution:
+#    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#        if head is None: return head
+#
+#        last_same = head
+#        while last_same and last_same.next:
+#            if last_same.val == last_same.next.val:
+#                last_same = last_same.next
+#            else:
+#                break
+#
+#        temp = None
+#        if last_same != head:   
+#            temp = last_same
+#            last_same.next = None
+#
+#        head = temp if temp else head
+#        head.next = self.deleteDuplicates(head.next)
+#    
+#        return head
 
-        last_same = head
-        while last_same and last_same.next:
-            if last_same.val == last_same.next.val:
-                last_same = last_same.next
-            else:
-                break
+# Attempt 2: Using a hashmap 
+#class Solution:
+#    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#        bucket = {}
+#        while head:
+#            if head is None:
+#                break
+#            bucket[head.val] = bucket.get(head.val, 0) + 1
+#            head = head.next
+#        
+#        newHead = ListNode()
+#        temp = newHead
+#        for h, f in bucket.items():
+#            if f == 1:
+#                temp.next = ListNode(h)
+#                temp = temp.next
+#        
+#        return newHead.next
+                
+# Attempt 3: Using iteration             
+# Incomplete
+#class Solution:
+#    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#        dummy = ListNode()
+#        prev = dummy
+#        curr = head
+#        
+#        last_same = curr
+#        while curr and curr.next:
+#            if curr.val == curr.next.val:
+#                curr = curr.next
+#            else: break
+#       
 
-        temp = None
-        if last_same != head:   
-            temp = last_same
-            last_same.next = None
 
-        head = temp if temp else head
-        head.next = self.deleteDuplicates(head.next)
-    
-        return head
