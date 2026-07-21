@@ -58,7 +58,64 @@ class ListNode:
 
 
 # Attempt 2: Trying to solve in O(1) space solution
+# Failed: This leads to wrong solution
+#class Solution:
+#    def detectMeetingPoint(self, head:Optional[ListNode]) -> Optional[ListNode]:
+#        slow = fast = head
+#
+#        while fast and fast.next:
+#            fast = fast.next.next
+#            slow = slow.next
+#
+#            if fast is slow:
+#                return fast
+#
+#        return
+#        
+#    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#        m = self.detectMeetingPoint(head)   
+#
+#        if m is None: return
+#        
+#        a = head
+#        b = m.next
+#
+#        has_a_passed_m = has_b_passed_m = False
+#
+#        while a and b:
+#            if a == b:
+#                break
+#
+#            a = a.next
+#            b = b.next
+#
+#            if a is m and not has_a_passed_m:
+#                has_a_passed_m = True
+#                a = m.next
+#            if b is m and not has_b_passed_m:
+#                has_b_passed_m = True
+#                b = head
+#
+#        return a
 
+# Attempt 2: Using Floyd's method
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        ...
+        fast = slow = head
+
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+
+            if fast == slow:
+                break
+        else:
+            return
+
+        slow = head
+
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+
+        return slow
